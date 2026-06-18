@@ -1,0 +1,281 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(rgba(96, 96, 96, 0.8), rgb(0, 0, 0)), url('closet-bg.jpg.png') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    font-family: "Broadway", "Impact", "Arial Black", sans-serif;
+    min-height: 100vh;
+}
+
+header {
+    text-align: center;
+    padding: 20px 20px;
+}
+
+header h1 {
+    font-size: 2rem;
+    letter-spacing: 4px;
+}
+
+main {
+    padding: 20px;
+    padding-bottom: 100px;
+}
+
+.outfit-section h2,
+.closet-section h2 {
+    margin-bottom: 15px;
+}
+
+#outfitDisplay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.outfit-slot {
+    width: 220px;
+    min-height: 80px;
+    border-radius: 18px;
+    background: #1c1c1c;
+    border: 1px solid #2f2f2f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+}
+
+.closet-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+input,
+select,
+button {
+    border: none;
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 1rem;
+}
+
+input,
+select {
+    background: #1c1c1c;
+    color: white;
+}
+
+#saveItemBtn {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Floating Generate Button */
+
+#generateButton {
+    position: fixed;
+    left: 50%;
+    bottom: 10px;
+    transform: translateX(-50%);
+    width: 170px;
+    height: 90px;
+    cursor: pointer;
+}
+
+.plus {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 3rem;
+    font-weight: bold;
+
+    background: white;
+    color: black;
+
+    border-radius: 25%;
+
+    z-index: 2;
+
+    width: 150px;
+    height: 70px;
+
+    margin: auto;
+
+    transition: transform 0.2s ease;
+
+    box-shadow: 0 0 20px rgba(255,255,255,0.25);
+}
+
+.plus:hover {
+    transform: scale(1.08) translateY(-3px);
+}
+
+.circle-text {
+    position: absolute;
+
+    width: 200px;
+    text-align: center;
+
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 4px;
+
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.6;
+    }
+}
+.circle-text span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    transform-origin: 0 -45px;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    transform:
+        rotate(calc(var(--i) * 20deg))
+        translateY(-45px);
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+/* CLOSET */
+
+.closet {
+    max-width: 500px;
+    margin: 0px auto;
+    border-radius: 25px;
+    overflow: hidden;
+    border: 2px solid #2c2c2c;
+   background-image: url("closet-bg.jpg.png");
+background-size: cover;
+background-position: center;
+
+background-size: cover;
+background-position: center -20px;
+}
+
+.closet-section {
+    min-height: 125px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+.closet-section:last-child {
+    border-bottom: none;
+}
+
+.closet-section h2 {
+    letter-spacing: 4px;
+    font-size: 1.1rem;
+}
+
+.closet-section p {
+    margin-top: 8px;
+    opacity: 0.6;
+}
+
+.closet-section:hover {
+    background: #0000008b;
+
+    box-shadow:
+        inset 0 0 20px rgba(255,255,255,0.08);
+}
+
+.closet-section.active {
+    background: #222;
+
+    box-shadow:
+        inset 0 0 30px rgba(255,255,255,0.15);
+}
+
+/* CLOSET OPEN PANEL */
+
+.clothing-panel {
+    display: none;
+
+    padding: 30px;
+
+    background: #0f0f0f;
+
+    border-top: 1px solid #333;
+}
+
+.clothing-panel.open {
+    display: block;
+}
+
+.clothing-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(90px, 1fr));
+
+    gap: 10px;
+}
+
+.clothing-card {
+    height: 0px;
+
+    border-radius: 12px;
+
+    background: #1c1c1c;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 0.8rem;
+}
+.closet-section h2 {
+    color: white;
+    font-size: 1.7rem;
+    letter-spacing: 6px;
+}
+
+.closet-section p {
+    display: none;
+}

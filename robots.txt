@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://vanwinklejulian865.github.io/OUTFITTED/sitemap.xml
