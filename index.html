@@ -4,72 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Outfitted</title>
-
-    <meta name="description" content="Outfitted — a simple closet and outfit generator. Create and save outfits from your virtual closet.">
+    <meta name="description" content="Outfitted — a simple closet and outfit generator.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://vanwinklejulian865.github.io/OUTFITTED/">
-
-    <!-- Open Graph / social preview -->
     <meta property="og:title" content="Outfitted">
     <meta property="og:description" content="Outfitted — a simple closet and outfit generator.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://vanwinklejulian865.github.io/OUTFITTED/">
     <meta property="og:image" content="closet-bg.jpg.png">
-
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="page-shell">
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">closet + style</p>
+                <h1>OUTFITTED</h1>
+                <p class="subtitle">Browse categories and add clothes with your camera.</p>
+            </div>
+            <button class="camera-button" id="cameraButton" type="button" aria-label="Add clothing photo">
+                📷
+            </button>
+        </header>
 
-    <header>
-        <h1>OUTFITTED</h1>
-    </header>
+        <main class="app-shell">
+            <aside class="sidebar">
+                <div class="panel">
+                    <div class="panel-title">Closet Categories</div>
+                    <div class="category-list">
+                        <a class="category-item" href="category.html?category=Headwear">HEADWEAR <span>0</span></a>
+                        <a class="category-item" href="category.html?category=Tops">TOPS <span>0</span></a>
+                        <a class="category-item" href="category.html?category=Bottoms">BOTTOMS <span>0</span></a>
+                        <a class="category-item" href="category.html?category=Layers">LAYERS <span>0</span></a>
+                        <a class="category-item" href="category.html?category=Shoes">SHOES <span>0</span></a>
+                    </div>
+                </div>
+            </aside>
 
-<main>
+            <section class="content">
+                <div class="closet">
+                    <a class="closet-section" href="category.html?category=Headwear" data-category="Headwear">
+                        <h2>HEADWEAR</h2>
+                        <p>View all headwear</p>
+                    </a>
+                    <a class="closet-section" href="category.html?category=Tops" data-category="Tops">
+                        <h2>TOPS</h2>
+                        <p>View all tops</p>
+                    </a>
+                    <a class="closet-section" href="category.html?category=Bottoms" data-category="Bottoms">
+                        <h2>BOTTOMS</h2>
+                        <p>View all bottoms</p>
+                    </a>
+                    <a class="closet-section" href="category.html?category=Layers" data-category="Layers">
+                        <h2>LAYERS</h2>
+                        <p>View all layers</p>
+                    </a>
+                    <a class="closet-section" href="category.html?category=Shoes" data-category="Shoes">
+                        <h2>SHOES</h2>
+                        <p>View all shoes</p>
+                    </a>
+                </div>
 
-    <div class="closet">
-
-        <div class="closet-section" data-category="Headwear">
-            <h2>HEADWEAR</h2>
-            <p>(0)</p>
-        </div>
-
-        <div class="closet-section" data-category="Tops">
-            <h2>TOPS</h2>
-            <p>(0)</p>
-        </div>
-
-        <div class="closet-section" data-category="Bottoms">
-            <h2>BOTTOMS</h2>
-            <p>(0)</p>
-        </div>
-
-        <div class="closet-section" data-category="Layers">
-            <h2>LAYERS</h2>
-            <p>(0)</p>
-        </div>
-
-        <div class="closet-section" data-category="Shoes">
-            <h2>SHOES</h2>
-            <p>(0)</p>
-        </div>
-
+                <div class="action-row">
+                    <a class="action-btn action-generate" href="category.html?category=Headwear">Generate Fit</a>
+                    <button class="action-btn action-save" type="button">Save Outfit</button>
+                </div>
+            </section>
+        </main>
     </div>
 
-</main>
-
-    <!-- Floating Generate Button -->
-   <div id="generateButton">
-
-<div class="circle-text">
-    GENERATE FIT
-</div>
-    <div class="plus">
-        +
-    </div>
-
-</div>
-
+    <input id="photoInput" type="file" accept="image/*" capture="environment" style="display:none">
     <script src="script.js"></script>
-
 </body>
 </html>
