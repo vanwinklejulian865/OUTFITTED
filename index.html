@@ -20,57 +20,81 @@
             <div>
                 <p class="eyebrow">closet + style</p>
                 <h1>OUTFITTED</h1>
-                <p class="subtitle">Browse categories and add clothes with your camera.</p>
+                <p class="subtitle">View your virtual closet and all of its combinations.</p>
             </div>
-            <button class="camera-button" id="cameraButton" type="button" aria-label="Add to your closet">
-                Add To Your Closet
-            </button>
         </header>
 
+        <div class="category-topbar">
+            <button class="category-item" type="button" data-category="Headwear">
+                <span class="category-icon">
+                    <svg viewBox="0 0 64 64" aria-hidden="true">
+                        <path d="M10 34c0-8 22-14 22-14s22 6 22 14c0 0-7 6-22 6S10 34 10 34Z" fill="#000" stroke="#fff" stroke-width="3"/>
+                        <path d="M14 34c0 8 8 12 18 12s18-4 18-12" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M12 28c4-8 16-10 18-10s14 2 18 10" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                </span>
+                <span class="category-label">HEADWEAR</span>
+            </button>
+            <button class="category-item" type="button" data-category="Tops">
+                <span class="category-icon">
+                    <svg viewBox="0 0 64 64" aria-hidden="true">
+                        <path d="M12 18c4-6 14-8 20-8s16 2 20 8v14l-2 16H14l-2-16V18Z" fill="#000" stroke="#fff" stroke-width="3"/>
+                        <path d="M12 18l10 8V22l-10-4Z" fill="#000" stroke="#fff" stroke-width="3"/>
+                        <path d="M52 18l-10 8V22l10-4Z" fill="#000" stroke="#fff" stroke-width="3"/>
+                    </svg>
+                </span>
+                <span class="category-label">TOPS</span>
+            </button>
+            <button class="category-item" type="button" data-category="Bottoms">
+                <span class="category-icon">
+                    <svg viewBox="0 0 64 64" aria-hidden="true">
+                        <path d="M18 16h10l2 20-10 18h-8l-2-18 8-20Z" fill="#000" stroke="#fff" stroke-width="3"/>
+                        <path d="M46 16h-10l-2 20 10 18h8l2-18-8-20Z" fill="#000" stroke="#fff" stroke-width="3"/>
+                    </svg>
+                </span>
+                <span class="category-label">BOTTOMS</span>
+            </button>
+            <button class="category-item" type="button" data-category="Layers">
+                <span class="category-icon">
+                    <svg viewBox="0 0 64 64" aria-hidden="true">
+                        <path d="M14 18c5-6 15-8 18-8s13 2 18 8v10l-3 18H17l-3-18V18Z" fill="#000" stroke="#fff" stroke-width="3"/>
+                        <path d="M14 30h36" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M16 40h32" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                </span>
+                <span class="category-label">LAYERS</span>
+            </button>
+            <button class="category-item" type="button" data-category="Shoes">
+                <span class="category-icon">
+                    <svg viewBox="0 0 64 64" aria-hidden="true">
+                        <path d="M12 36h36l4 8-4 6H16l-4-6 0-8Z" fill="#000" stroke="#fff" stroke-width="3"/>
+                        <path d="M12 36v-4c0-4 2-8 6-8h28c4 0 6 4 6 8v4" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M18 40h8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M34 40h10" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                </span>
+                <span class="category-label">SHOES</span>
+            </button>
+        </div>
+
         <main class="app-shell">
-            <aside class="sidebar">
-                <div class="panel">
-                    <div class="panel-title">Closet Categories</div>
-                    <div class="category-list">
-                        <a class="category-item" href="category.html?category=Headwear">HEADWEAR <span>0</span></a>
-                        <a class="category-item" href="category.html?category=Tops">TOPS <span>0</span></a>
-                        <a class="category-item" href="category.html?category=Bottoms">BOTTOMS <span>0</span></a>
-                        <a class="category-item" href="category.html?category=Layers">LAYERS <span>0</span></a>
-                        <a class="category-item" href="category.html?category=Shoes">SHOES <span>0</span></a>
-                    </div>
-                </div>
-            </aside>
-
             <section class="content">
-                <div class="closet">
-                    <a class="closet-section" href="category.html?category=Headwear" data-category="Headwear">
-                        <h2>HEADWEAR</h2>
-                        <p>View all headwear</p>
-                    </a>
-                    <a class="closet-section" href="category.html?category=Tops" data-category="Tops">
-                        <h2>TOPS</h2>
-                        <p>View all tops</p>
-                    </a>
-                    <a class="closet-section" href="category.html?category=Bottoms" data-category="Bottoms">
-                        <h2>BOTTOMS</h2>
-                        <p>View all bottoms</p>
-                    </a>
-                    <a class="closet-section" href="category.html?category=Layers" data-category="Layers">
-                        <h2>LAYERS</h2>
-                        <p>View all layers</p>
-                    </a>
-                    <a class="closet-section" href="category.html?category=Shoes" data-category="Shoes">
-                        <h2>SHOES</h2>
-                        <p>View all shoes</p>
-                    </a>
-                </div>
+                <div id="messageBox" class="message-box">Choose a category or tap Add To Your Closet.</div>
 
-                <div class="action-row">
-                    <a class="action-btn action-generate" href="category.html?category=Headwear">Generate Fit</a>
-                    <button class="action-btn action-save" type="button">Save Outfit</button>
+                <div class="preview-card">
+                    <div class="preview-title">Your virtual closet</div>
+                    <p class="preview-copy">Select a category above to start getting OutFitted.</p>
                 </div>
             </section>
         </main>
+    </div>
+
+    <div class="bottom-bar">
+        <button class="action-btn action-generate" id="generateButton" type="button">Generate Fit</button>
+        <div class="bottom-center">
+            <button class="camera-button" id="cameraButton" type="button" aria-label="Add to your closet">Add To Your Closet</button>
+        </div>
+        <button class="action-btn action-save" id="saveButton" type="button">Save Outfit</button>
     </div>
 
     <input id="photoInput" type="file" accept="image/*" capture="environment" style="display:none">

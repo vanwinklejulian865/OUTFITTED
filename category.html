@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">closet + style</p>
+                <h1 id="categoryTitle">Category</h1>
+                <p class="subtitle">Browse the selected closet category and view its items.</p>
+            </div>
+            <a class="camera-button" href="index.html">Back</a>
+        </header>
+
+        <main class="app-shell">
+            <section class="content">
+                <div class="closet">
+                    <p id="categoryDescription" style="color:#fff;">Loading category...</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const category = params.get('category') || 'Unknown';
+        const title = category.toUpperCase();
+        document.getElementById('categoryTitle').textContent = title;
+        document.getElementById('categoryDescription').textContent = `This is the ${category} category page. Add items or outfit options here.`;
+    </script>
+</body>
+</html>
