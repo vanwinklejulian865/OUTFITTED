@@ -1,0 +1,14 @@
+-----------------------------------------------------------
+
+function buildOutfit() {
+    const categories = ['Accessories', 'Tops', 'Layers', 'Bottoms', 'Shoes'];
+    return categories
+        .map((category) => {
+            const items = closetData[category];
+            if (!items || !items.length) return null;
+            return { category, item: chooseBestItem(category, items) };
+        })
+        .filter(Boolean);
+}
+
+-----------------------------------------------------------

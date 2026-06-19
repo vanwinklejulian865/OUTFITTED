@@ -142,10 +142,15 @@ document.addEventListener('DOMContentLoaded', () => {
         files.forEach((file) => {
             const reader = new FileReader();
             reader.onload = () => {
-                const item = {
-                    name: file.name,
-                    url: reader.result
-                };
+               const customName = prompt(
+    `Name your ${selectedCategory} item:`,
+    file.name.replace(/\.[^/.]+$/, "")
+);
+
+const item = {
+    name: customName || file.name,
+    url: reader.result
+};
 
                 closetData[selectedCategory].push(item);
                 addedNames.push(file.name);
@@ -163,7 +168,15 @@ document.addEventListener('DOMContentLoaded', () => {
             reader.readAsDataURL(file);
         });
     });
+function calculateOutfitScore(outfit) {
+    let total = 0;
 
+    outfit.forEach(({ category, item }) => {
+        total += scoreItemForTrend(category, item, 0, 1);
+    });
+
+    return Math.min(100, Math.round(total));
+}
     generateButton.addEventListener('click', () => {
         const vitalCategories = ['Tops', 'Bottoms', 'Shoes'];
         const missingVital = vitalCategories.filter(cat => !closetData[cat] || closetData[cat].length === 0);
@@ -174,6 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const outfitItems = buildOutfit();
+        const outfitScore = calculateOutfitScore(outfitItems);
         if (!outfitItems.length) {
             messageBox.textContent = 'Add at least one item to any category before generating an outfit.';
             return;
@@ -181,7 +195,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         hasGeneratedFit = true;
         renderOutfit(outfitItems);
-        messageBox.textContent = 'Generated a full outfit. Scroll down to preview it.';
+        messageBox.textContent =
+    `Generated a full outfit! 🔥 Outfit Score: ${outfitScore}/100`;
     });
 
     saveButton.addEventListener('click', () => {
@@ -370,36 +385,197 @@ function updateClosetGrid() {
 const TREND_KEYWORDS = [
     'denim', 'leather', 'vintage', 'minimal', 'sporty', 'pastel',
     'earth', 'neon', 'check', 'stripe', 'floral', 'retro', 'oversized',
-    'tailored', 'cropped', 'slim', 'monochrome', 'bold', 'classic', 'grunge',
+    'tailored', 'cropped', 'slim', 'monochrome', 'classic', 'grunge',
     'boho', 'glam', 'elegant', 'street', 'cyber', 'funk', 'preppy', 'academic',
     'formal', 'utility', 'athletic', 'laid-back', 'cozy', 'rugged', 'edgy',
     'chic', 'smart', 'bold', 'dreamy', 'saturated', 'neutral', 'textured',
-    'soft', 'clean', 'structured'
+    'soft', 'clean', 'structured','black','white','grey','gray','blue','navy','green',
+    'olive','brown','tan','cream','beige'
 ];
 
 const styleKeywordMap = {
-    Casual: ['casual', 'easy', 'comfy', 'relaxed', 'everyday', 'laid-back'],
-    Athleisure: ['athleisure', 'sporty', 'sweat', 'track', 'active', 'performance'],
-    Streetwear: ['street', 'hype', 'urban', 'graphic', 'oversized', 'bold'],
-    Minimalist: ['minimal', 'simple', 'clean', 'streamlined', 'neutral', 'understated'],
-    Vintage: ['vintage', 'retro', 'old-school', 'throwback', 'classic', 'distressed'],
-    Boho: ['boho', 'bohemian', 'flowy', 'fringe', 'embroidered', 'earthy'],
-    Preppy: ['preppy', 'polished', 'crisp', 'laid-back', 'classic', 'tucked'],
-    Gothic: ['gothic', 'dark', 'black', 'leather', 'velvet', 'lace'],
-    Professional: ['professional', 'tailored', 'sharp', 'office', 'polished', 'sleek'],
-    Romantic: ['romantic', 'lace', 'soft', 'floral', 'dreamy', 'flowy'],
-    Sporty: ['sporty', 'active', 'mesh', 'jersey', 'performance', 'runner'],
-    Grunge: ['grunge', 'distressed', 'plaid', 'band', 'cover', 'layered'],
-    Pastel: ['pastel', 'soft', 'powder', 'mint', 'lavender', 'blush'],
-    Monochrome: ['monochrome', 'black', 'white', 'grey', 'tone', 'contrast'],
-    Bright: ['bright', 'vivid', 'neon', 'bold', 'colorful', 'electric'],
-    Neutral: ['neutral', 'earth', 'beige', 'taupe', 'sand', 'cream'],
-    Edgy: ['edgy', 'spike', 'chunky', 'leather', 'graphic', 'ripped'],
-    Classic: ['classic', 'elegant', 'timeless', 'heritage', 'refined', 'tailored'],
-    Sophisticated: ['sophisticated', 'luxury', 'sleek', 'polished', 'structured', 'rich'],
-    Relaxed: ['relaxed', 'loose', 'oversized', 'flowy', 'soft', 'easy']
-};
+    Casual: [
+        'shirt',
+        'tee',
+        'tshirt',
+        'hoodie',
+        'jeans',
+        'shorts',
+        'sneakers',
+        'crewneck',
+        'joggers',
+        'everyday',
+        'comfy',
+        'relaxed',
+        'basic',
+        'zipup',
+        'cargo',
+        'pants'
+    ],
 
+    Athleisure: [
+        'athleisure',
+        'nike',
+        'adidas',
+        'running',
+        'training',
+        'gym',
+        'joggers',
+        'track',
+        'active',
+        'performance',
+        'athletic',
+        'sport'
+    ],
+
+    Streetwear: [
+        'streetwear',
+        'street',
+        'urban',
+        'graphic',
+        'oversized',
+        'baggy',
+        'cargo',
+        'hoodie',
+        'zipup',
+        'crewneck',
+        'tee',
+        'shirt',
+        'jeans',
+        'jorts',
+        'flannel',
+        'jacket',
+        'nike',
+        'dunks',
+        'vans',
+        'skate',
+        'stussy',
+        'supreme',
+        'carhartt',
+        'parachute',
+        'windbreaker',
+        'crew'
+    ],
+
+    Skate: [
+        'skate',
+        'skater',
+        'vans',
+        'nike sb',
+        'dunks',
+        'baggy',
+        'cargo',
+        'jorts',
+        'hoodie',
+        'graphic',
+        'tee',
+        'flannel',
+        'thrasher',
+        'independent',
+        'deck',
+        'hoodie',
+        'zipup',
+        'baggy jeans'
+    ],
+
+    Minimalist: [
+        'minimal',
+        'simple',
+        'clean',
+        'neutral',
+        'plain',
+        'basic',
+        'black',
+        'white',
+        'grey',
+        'gray',
+        'cream',
+        'beige'
+    ],
+
+    Vintage: [
+        'vintage',
+        'retro',
+        'old',
+        'classic',
+        'throwback',
+        'faded',
+        'distressed',
+        'washed',
+        'heritage'
+    ],
+
+    Professional: [
+        'professional',
+        'office',
+        'dress',
+        'button',
+        'button-up',
+        'collar',
+        'slacks',
+        'tailored',
+        'blazer',
+        'formal'
+    ],
+
+    Gothic: [
+        'goth',
+        'gothic',
+        'black',
+        'dark',
+        'leather',
+        'chain',
+        'combat',
+        'boots',
+        'lace',
+        'velvet'
+    ],
+
+    Grunge: [
+        'grunge',
+        'flannel',
+        'distressed',
+        'ripped',
+        'band',
+        'oversized',
+        'layered',
+        'faded',
+        'dark'
+    ],
+
+    Monochrome: [
+        'black',
+        'white',
+        'grey',
+        'gray',
+        'monochrome',
+        'single-color'
+    ],
+
+    Bright: [
+        'bright',
+        'vivid',
+        'neon',
+        'colorful',
+        'red',
+        'yellow',
+        'orange',
+        'pink',
+        'electric'
+    ],
+
+    Neutral: [
+        'neutral',
+        'beige',
+        'cream',
+        'tan',
+        'brown',
+        'taupe',
+        'sand',
+        'earth',
+        'olive'
+    ]
+};
 function renderStylePrompt() {
     stylePromptGrid.innerHTML = '';
     styleOptions.forEach((style) => {
@@ -581,11 +757,64 @@ function chooseBestItem(category, items) {
     scoredItems.sort((a, b) => b.score - a.score);
     return scoredItems[0].item;
 }
+function getItemStyleTags(item) {
+    const name = (item.name || '').toLowerCase();
 
+    const tags = [];
+
+    Object.entries(styleKeywordMap).forEach(([style, keywords]) => {
+        if (keywords.some(keyword => name.includes(keyword))) {
+            tags.push(style);
+        }
+    });
+
+    return tags;
+}
+
+function scoreOutfitCompatibility(outfit) {
+    let score = 0;
+
+    const allTags = [];
+
+    outfit.forEach(entry => {
+        allTags.push(...getItemStyleTags(entry.item));
+    });
+
+    const counts = {};
+
+    allTags.forEach(tag => {
+        counts[tag] = (counts[tag] || 0) + 1;
+    });
+
+    Object.values(counts).forEach(count => {
+        score += count * 5;
+    });
+
+    return score;
+}
+function getItemStyleTags(item) {
+    const name = item.name ? item.name.toLowerCase() : '';
+
+    const tags = [];
+
+    Object.entries(styleKeywordMap).forEach(([style, keywords]) => {
+        if (keywords.some(keyword => name.includes(keyword))) {
+            tags.push(style);
+        }
+    });
+
+    return tags;
+}
 function scoreItemForTrend(category, item, index, length) {
     const name = item.name ? item.name.toLowerCase() : '';
     let score = 10;
+const itemStyles = getItemStyleTags(item);
 
+itemStyles.forEach(style => {
+    if (selectedStyles.includes(style)) {
+        score += 6;
+    }
+});
     score += index / Math.max(1, length) * 4;
 
     TREND_KEYWORDS.forEach((keyword) => {
