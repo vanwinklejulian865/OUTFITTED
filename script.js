@@ -74,33 +74,47 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     photoInput.addEventListener('change', (event) => {
-        const file = event.target.files[0];
-        if (!file || !selectedCategory) return;
+        const files = Array.from(event.target.files);
+        if (!files.length || !selectedCategory) return;
 
-        const reader = new FileReader();
-        reader.onload = () => {
-            const item = {
-                name: file.name,
-                url: reader.result
+        let addedNames = [];
+        let loadedCount = 0;
+
+        files.forEach((file) => {
+            const reader = new FileReader();
+            reader.onload = () => {
+                const item = {
+                    name: file.name,
+                    url: reader.result
+                };
+
+                closetData[selectedCategory].push(item);
+                addedNames.push(file.name);
+                loadedCount += 1;
+
+                if (loadedCount === files.length) {
+                    saveClosetData();
+                    updateClosetGrid();
+                    hasGeneratedFit = false;
+                    const namesText = addedNames.length > 1 ? `${addedNames.length} photos` : `“${addedNames[0]}”`;
+                    messageBox.textContent = `Added ${namesText} to ${selectedCategory}.`;
+                    photoInput.value = '';
+                }
             };
-
-            closetData[selectedCategory].push(item);
-            saveClosetData();
-            updateClosetGrid();
-            hasGeneratedFit = false;
-            messageBox.textContent = `Added “${file.name}” to ${selectedCategory}.`;
-            photoInput.value = '';
-        };
-        reader.readAsDataURL(file);
+            reader.readAsDataURL(file);
+        });
     });
 
     generateButton.addEventListener('click', () => {
-        if (!selectedCategory) {
-            messageBox.textContent = 'Choose a category first to generate a fit.';
+        const outfitItems = buildOutfit();
+        if (!outfitItems.length) {
+            messageBox.textContent = 'Add at least one item to any category before generating an outfit.';
             return;
         }
+
         hasGeneratedFit = true;
-        messageBox.textContent = `Generated a fit using ${selectedCategory}. Tap Save Outfit to keep it.`;
+        renderOutfit(outfitItems);
+        messageBox.textContent = 'Generated a full outfit. Scroll down to preview it.';
     });
 
     saveButton.addEventListener('click', () => {
@@ -264,6 +278,49 @@ function updateClosetGrid() {
     if (!hasItems) {
         closetGrid.innerHTML = '';
     }
+}
+
+function buildOutfit() {
+    const categories = ['Headwear', 'Tops', 'Layers', 'Bottoms', 'Shoes'];
+    return categories
+        .map((category) => {
+            const items = closetData[category];
+            if (!items || !items.length) return null;
+            return { category, item: items[0] };
+        })
+        .filter(Boolean);
+}
+
+function renderOutfit(outfitItems) {
+    const outfitBuilder = document.getElementById('outfitBuilder');
+    const outfitResult = document.getElementById('outfitResult');
+    const selectedItems = document.getElementById('selectedItems');
+
+    outfitResult.innerHTML = '';
+    selectedItems.innerHTML = '';
+
+    outfitItems.forEach(({ category, item }) => {
+        const slot = document.createElement('div');
+        slot.className = 'outfit-slot';
+
+        const img = document.createElement('img');
+        img.src = item.url;
+        img.alt = item.name;
+        slot.appendChild(img);
+
+        const label = document.createElement('span');
+        label.textContent = category;
+        slot.appendChild(label);
+
+        outfitResult.appendChild(slot);
+
+        const chip = document.createElement('div');
+        chip.className = 'selected-chip';
+        chip.textContent = `${category}: ${item.name}`;
+        selectedItems.appendChild(chip);
+    });
+
+    outfitBuilder.classList.remove('hidden');
 }
 
 function saveClosetData() {

@@ -81,6 +81,17 @@
             <section class="content">
                 <div id="messageBox" class="message-box">Choose a category or tap Add To Your Closet.</div>
 
+                <div id="outfitBuilder" class="outfit-builder hidden">
+                    <div class="outfit-header">
+                        <div>
+                            <div class="outfit-label">Generated outfit</div>
+                            <h2 class="outfit-title">Outfit Preview</h2>
+                        </div>
+                        <div id="selectedItems" class="selected-items"></div>
+                    </div>
+                    <div id="outfitResult" class="outfit-result"></div>
+                </div>
+
                 <div class="preview-card">
                     <div class="preview-title">Your virtual closet</div>
                     <p class="preview-copy">Select a category above to start getting OutFitted.</p>
@@ -111,7 +122,7 @@
         <button class="action-btn action-save" id="saveButton" type="button">Save Outfit</button>
     </div>
 
-    <input id="photoInput" type="file" accept="image/*" capture="environment" style="display:none">
+    <input id="photoInput" type="file" accept="image/*" multiple capture="environment" style="display:none">
     <script src="script.js"></script>
 </body>
 </html>

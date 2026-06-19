@@ -196,6 +196,93 @@ main {
     box-shadow: 0 32px 72px rgba(0, 0, 0, 0.3);
 }
 
+.outfit-builder {
+    width: 100%;
+    max-width: 1080px;
+    background: rgba(0, 0, 0, 0.50);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 36px;
+    padding: 28px 24px;
+    box-shadow: 0 28px 60px rgba(0, 0, 0, 0.28);
+    margin-bottom: 24px;
+}
+
+.outfit-builder.hidden {
+    display: none;
+}
+
+.outfit-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.outfit-label {
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: 0.75;
+    margin-bottom: 6px;
+}
+
+.outfit-title {
+    font-size: 1.8rem;
+    letter-spacing: 6px;
+    margin: 0;
+}
+
+.selected-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 320px;
+}
+
+.selected-chip {
+    padding: 10px 12px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 0.82rem;
+    letter-spacing: 1px;
+}
+
+.outfit-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    padding: 20px 0 0;
+}
+
+.outfit-slot {
+    width: min(220px, 100%);
+    border-radius: 28px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    display: grid;
+    gap: 10px;
+    padding: 10px;
+}
+
+.outfit-slot img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 18px;
+}
+
+.outfit-slot span {
+    font-size: 0.86rem;
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.88;
+}
+
 .preview-title {
     font-size: 1.4rem;
     letter-spacing: 4px;
