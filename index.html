@@ -86,11 +86,21 @@
                     <p class="preview-copy">Select a category above to start getting OutFitted.</p>
                 </div>
 
-                <div id="closetGrid" class="closet-grid">
-                    <p class="empty-closet">No closet items yet. Tap a category, then Add To Your Closet to take a photo.</p>
-                </div>
+                <div id="closetGrid" class="closet-grid"></div>
             </section>
         </main>
+
+        <div id="categoryDetailScreen" class="category-detail-screen hidden" aria-hidden="true">
+            <div class="category-detail-shell">
+                <button id="detailBackButton" class="detail-back" type="button">← Back</button>
+                <div class="detail-header-row">
+                    <h2 id="detailCategoryTitle">Category</h2>
+                    <button id="detailDeleteButton" class="detail-delete-btn hidden" type="button">Delete selected</button>
+                </div>
+                <div id="detailGallery" class="closet-items detail-gallery"></div>
+                <p id="detailEmpty" class="empty-closet">No items in this category yet.</p>
+            </div>
+        </div>
     </div>
 
     <div class="bottom-bar">

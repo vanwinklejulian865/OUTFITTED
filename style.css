@@ -17,6 +17,16 @@ body {
     font-family: "Broadway", "Impact", "Arial Black", sans-serif;
 }
 
+.category-detail-screen {
+    background: transparent;
+    backdrop-filter: none;
+}
+
+.category-detail-shell {
+    background: rgba(25, 18, 12, 0.95);
+    border: none;
+}
+
 a {
     color: inherit;
     text-decoration: none;
@@ -200,7 +210,7 @@ main {
 
 .closet-grid {
     margin-top: 24px;
-    display: grid;
+    display: none;
     gap: 18px;
 }
 
@@ -226,14 +236,108 @@ main {
     gap: 12px;
 }
 
+.category-detail-screen {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(rgba(25, 18, 12, 0.92), rgba(25, 18, 12, 0.92)), url('closet-bg.jpg.png') no-repeat center center fixed;
+    background-size: cover;
+    backdrop-filter: blur(12px);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 100;
+}
+
+.category-detail-screen.hidden {
+    display: none;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.category-detail-shell {
+    width: min(760px, 100%);
+    max-height: 92vh;
+    overflow-y: auto;
+    background: transparent;
+    border: none;
+    border-radius: 28px;
+    padding: 24px;
+    box-shadow: none;
+}
+
+.detail-back {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 16px;
+    cursor: pointer;
+    margin-bottom: 18px;
+    font-size: 0.95rem;
+}
+
+.detail-back:hover {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.detail-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.detail-delete-btn {
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 10px 16px;
+    border-radius: 18px;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.detail-delete-btn.hidden {
+    display: none;
+}
+
+.detail-delete-btn.active {
+    background: rgba(255, 85, 85, 0.95);
+    border-color: rgba(255, 85, 85, 0.95);
+}
+
+#detailCategoryTitle {
+    font-size: 1.5rem;
+    letter-spacing: 5px;
+    margin-bottom: 18px;
+}
+
+.detail-gallery {
+    min-height: 180px;
+}
+
+#detailEmpty {
+    margin-top: 14px;
+    padding: 20px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px dashed rgba(255, 255, 255, 0.12);
+    text-align: center;
+    font-size: 0.95rem;
+}
+
 .closet-item {
     width: 80px;
     min-width: 80px;
     border-radius: 20px;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: transparent;
+    border: none;
     text-align: center;
+    position: relative;
 }
 
 .closet-item img {
@@ -241,14 +345,55 @@ main {
     display: block;
     aspect-ratio: 1 / 1;
     object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.95);
+    border-radius: 18px;
+}
+
+.delete-item-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 26px;
+    height: 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    background: rgba(0, 0, 0, 0.45);
+    color: #fff;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.delete-item-btn:hover {
+    background: rgba(255, 255, 255, 0.18);
+    transform: scale(1.05);
+}
+
+.closet-item.selected {
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.75);
+}
+
+.select-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    color: #121212;
+    font-size: 0.75rem;
+    font-weight: bold;
 }
 
 .closet-item span {
-    display: block;
-    padding: 8px 6px;
-    font-size: 0.72rem;
-    color: #fff;
-    line-height: 1.3;
+    display: none;
 }
 
 .empty-closet {
@@ -360,6 +505,7 @@ main {
     color: #fff;
     border: none;
     box-shadow: 0 22px 48px rgba(0, 0, 0, 0.16);
+    pointer-events: auto;
 }
 
 .camera-button.pulse {
