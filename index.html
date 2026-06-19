@@ -15,6 +15,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="stylePrompt" class="style-prompt hidden" aria-hidden="true">
+        <div class="style-prompt-shell">
+            <div class="style-prompt-header">
+                <p class="eyebrow">style profile</p>
+                <h2>What outfit styles do you like?</h2>
+                <p class="style-prompt-copy">Choose the looks you want OutFitted to favor. You can update this anytime.</p>
+            </div>
+            <div id="stylePromptGrid" class="style-prompt-grid"></div>
+            <div class="style-prompt-actions">
+                <button id="stylePromptSkip" class="style-prompt-button" type="button">Skip for now</button>
+                <button id="stylePromptSave" class="style-prompt-button primary" type="button">Save preferences</button>
+            </div>
+        </div>
+    </div>
+
     <div class="page-shell">
         <header class="page-header">
             <div>
@@ -25,7 +40,7 @@
         </header>
 
         <div class="category-topbar">
-            <button class="category-item" type="button" data-category="Headwear">
+            <button class="category-item" type="button" data-category="Accessories">
                 <span class="category-icon">
                     <svg viewBox="0 0 64 64" aria-hidden="true">
                         <path d="M10 34c0-8 22-14 22-14s22 6 22 14c0 0-7 6-22 6S10 34 10 34Z" fill="#000" stroke="#fff" stroke-width="3"/>
@@ -33,7 +48,7 @@
                         <path d="M12 28c4-8 16-10 18-10s14 2 18 10" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
                     </svg>
                 </span>
-                <span class="category-label">HEADWEAR</span>
+                <span class="category-label">ACCESSORIES</span>
             </button>
             <button class="category-item" type="button" data-category="Tops">
                 <span class="category-icon">
@@ -110,6 +125,15 @@
                 </div>
                 <div id="detailGallery" class="closet-items detail-gallery"></div>
                 <p id="detailEmpty" class="empty-closet">No items in this category yet.</p>
+            </div>
+        </div>
+
+        <div id="savedOutfitsPage" class="saved-outfits-page hidden" aria-hidden="true">
+            <div class="saved-outfits-shell">
+                <button id="savedOutfitsBackButton" class="saved-back" type="button">← Back to Closet</button>
+                <h2>Saved Outfits</h2>
+                <div id="savedOutfitsList" class="saved-outfits-list"></div>
+                <p id="noSavedOutfits" class="empty-state">No saved outfits yet. Generate and save one to get started!</p>
             </div>
         </div>
     </div>
